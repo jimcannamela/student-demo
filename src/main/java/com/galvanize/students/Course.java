@@ -1,6 +1,7 @@
 package com.galvanize.students;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,8 +13,9 @@ public class Course {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "likedCourses")
+//    @JsonIgnore
+    @ManyToMany( mappedBy = "likedCourses")
+    @JsonIgnoreProperties("likedCourses")
     private Set<Student> students;
 
     public Long getId() {
